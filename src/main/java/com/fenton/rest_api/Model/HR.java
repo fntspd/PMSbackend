@@ -25,8 +25,8 @@ public class HR {
     @Column(name = "email",nullable = false)
     private String email;
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(name = "company_id")
-    private Company companyId;             //foreign key
+    @JoinColumn(name = "company_id")
+    private Company company;             //foreign key
 
 
 

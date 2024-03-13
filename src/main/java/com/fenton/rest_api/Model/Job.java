@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "admin")
+@Table(name = "job")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +25,9 @@ public class Job {
     @Column(name = "requirements")
     private String requirements;
     @ManyToOne
-    @Column(name = "company_id")       //foreign key
-    private Company companyId;
+    @JoinColumn(name = "company_id")      //foreign key
+    private Company company;
     @OneToOne
-    @Column(name = "hr_id")           //foreign key
-    private HR hrId;
+    @JoinColumn(name = "hr_id")         //foreign key
+    private HR hr;
 }
