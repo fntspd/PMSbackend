@@ -33,4 +33,5 @@ public class Company {
     @OneToMany(fetch = FetchType.EAGER)      //cascade=CascadeType.AL
     @JoinColumn(name = "hr_id")
     private List<HR> hr;
+
 }
