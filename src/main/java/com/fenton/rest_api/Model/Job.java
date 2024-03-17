@@ -22,12 +22,13 @@ public class Job {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "requirements")
+    @Column(name = "requirements",nullable = false)
     private String requirements;
+    //job location or campus
     @ManyToOne
-    @JoinColumn(name = "company_id")      //foreign key
+    @JoinColumn(name = "company_id",nullable = false)      //foreign key
     private Company company;
-    @OneToOne
-    @JoinColumn(name = "hr_id")         //foreign key
-    private HR hr;
+//    @OneToOne
+//    @JoinColumn(name = "hr_id")         //foreign key
+//    private HR hr;
 }

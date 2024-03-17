@@ -18,20 +18,22 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false,unique = true)
     private String name;
 
     @Column(name = "industry")
     private String industry;
 
-    @Column(name = "location")
+    @Column(name = "location",nullable = false)
     private String location;
 
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER)      //cascade=CascadeType.AL
-    @JoinColumn(name = "hr_id")
-    private List<HR> hr;
+    @OneToOne
+    @JoinColumn(name = "hr_id",nullable = false)
+    private HR hr;
+
+
 
 }

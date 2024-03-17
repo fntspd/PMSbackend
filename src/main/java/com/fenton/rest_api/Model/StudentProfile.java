@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import static javax.swing.Action.DEFAULT;
 
 
 @Data
@@ -65,7 +66,7 @@ public class StudentProfile {
     private String class10grade;
 
     @Column(name = "class12th",nullable = false)
-    private String class12grade;
+        private String class12grade;
 
     @Column(name = "curr_deg_grade",nullable = false)
     private String currentdegreegrade;
@@ -78,6 +79,11 @@ public class StudentProfile {
 
     @Column(name = "tot_back",nullable = false)
     private Long totalBacklogs;
+
+    @Column(name="placement_status",columnDefinition = "VARCHAR(255) DEFAULT 'No'")
+    private String placementStatus = "No";
+
+
 
 //	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL , mappedBy = "studentProfile")
 

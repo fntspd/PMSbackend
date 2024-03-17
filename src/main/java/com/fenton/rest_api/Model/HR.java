@@ -22,13 +22,15 @@ public class HR {
     private String middleName;
     @Column(name = "last_name",nullable = false)
     private String lastName;
-    @Column(name = "email",nullable = false)
+    @Column(name = "email",nullable = false,unique = true)
     private String email;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "company_id")
-    private Company company;             //foreign key
+
+//    @OneToOne
+//    @JoinColumn(name="company_id",nullable = false)
+//    private Company company;
 
 
-
-
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "company_id")
+//    private Company company;             //foreign key
 }
