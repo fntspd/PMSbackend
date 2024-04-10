@@ -8,12 +8,7 @@ public interface StudentService {
 
     StudentProfile saveStudentProfile(StudentProfile studentProfile);
 
-    List<StudentProfile> getAllStudentProfile();
-
-    StudentProfile getStudentProfileById(Long stdid);
-
     StudentProfile updateStudentProfile(Long id,StudentProfile std);
-    Long deleteById(Long id);
 
 
 }
