@@ -17,14 +17,16 @@ public class AdminServiceImpl implements AdminService{
     private HRRepository hrRepository;
     private JobRepository jobRepository;
     private StudentProfileRepository studentProfileRepository;
+    private  AddStudentRepository addStudentRepository;
 
     @Autowired
-    public AdminServiceImpl(AdminRepository adminRepository,CompanyRepository companyRepository,HRRepository hrRepository,JobRepository jobRepository,StudentProfileRepository studentProfileRepository) {
+    public AdminServiceImpl(AdminRepository adminRepository,CompanyRepository companyRepository,HRRepository hrRepository,JobRepository jobRepository,StudentProfileRepository studentProfileRepository,AddStudentRepository addStudentRepository) {
         this.adminRepository = adminRepository;
         this.companyRepository = companyRepository;
         this.hrRepository=hrRepository;
         this.jobRepository=jobRepository;
         this.studentProfileRepository=studentProfileRepository;
+        this.addStudentRepository=addStudentRepository;
     }
 
     @Override
@@ -59,6 +61,38 @@ public class AdminServiceImpl implements AdminService{
         }
 
         return studentProfileRepository.save(studentProfile);
+    }
+
+    @Override
+    public AddStudent addstudentadmin(AddStudent addStudent) {
+        if(addStudent.getStudentName()==null||addStudent.getSchool()==null||addStudent.getCampus()==null||addStudent.getBranch()==null||addStudent.getEmail()==null){
+            throw new FieldsNotEnteredException();
+        }
+        return addStudentRepository.save(addStudent);
+    }
+
+    @Override
+    public AddStudent updateStudentadmin(Long studentId, AddStudent addStudent) {
+        AddStudent existingStudentadmin=addStudentRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student","ID",studentId));
+        if (addStudent.getStudentName() != null) {
+            existingStudentadmin.setStudentName(addStudent.getStudentName());
+        }
+        if (addStudent.getSchool() != null) {
+            existingStudentadmin.setSchool(addStudent.getSchool());
+        }
+        if (addStudent.getCampus() != null) {
+            existingStudentadmin.setCampus(addStudent.getCampus());
+        }
+        if (addStudent.getBranch() != null) {
+            existingStudentadmin.setBranch(addStudent.getBranch());
+        }if (addStudent.getEmail() != null) {
+            existingStudentadmin.setEmail(addStudent.getEmail());
+        }
+        if (addStudent.getPassword() != null) {
+            existingStudentadmin.setPassword(addStudent.getPassword());
+        }
+        addStudentRepository.save(existingStudentadmin);
+        return existingStudentadmin;
     }
 
     @Override

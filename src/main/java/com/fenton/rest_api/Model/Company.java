@@ -31,7 +31,7 @@ public class Company {
     private String description;
 
     @OneToOne
-    @JoinColumn(name = "hr_id",nullable = false)
+    @JoinColumn(name = "hr_id")
     private HR hr;
 
 

@@ -9,6 +9,8 @@ public interface AdminService {
     List<StudentProfile> getAllStudent();
 
     StudentProfile addStudent(StudentProfile studentProfile);
+    AddStudent addstudentadmin(AddStudent addStudent);
+    AddStudent updateStudentadmin(Long studentId, AddStudent addStudent);
 
     //Object addHr(HR hr);
     Company addCompany(Company company);
