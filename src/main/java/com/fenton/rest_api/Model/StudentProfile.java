@@ -32,6 +32,8 @@ public class StudentProfile {
 
     @Column(name = "email",nullable = false,unique = true)
     private String email;
+    @Column(nullable = false)
+    private String password;
 
     @Column(name = "dob")
     private String dob;
@@ -83,6 +85,8 @@ public class StudentProfile {
 
     @Column(name="placement_status",columnDefinition = "VARCHAR(255) DEFAULT 'No'")
     private String placementStatus = "No";
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'student'")
+    private String code="student";
 
 
 //    @Transient // Exclude from database mapping

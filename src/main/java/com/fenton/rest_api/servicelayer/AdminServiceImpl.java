@@ -40,6 +40,14 @@ public class AdminServiceImpl implements AdminService{
         return studentProfileRepository.findAll();
     }
     @Override
+    public List<Company> getAllCompany() {
+        return companyRepository.findAll();
+    }
+    @Override
+    public List<Job> getAllJobs() {
+        return jobRepository.findAll();
+    }
+    @Override
     public StudentProfile addStudent(StudentProfile studentProfile){
         if (studentProfile.getFirstName() == null ||
                 studentProfile.getLastName() == null ||
@@ -203,5 +211,13 @@ public class AdminServiceImpl implements AdminService{
         }
         jobRepository.save(existingJob);
         return existingJob;
+    }
+    @Override
+    public Long deleteJobById(Long jobId) {
+        Job existingJob=jobRepository.findById(jobId).orElseThrow(()-> new ResourceNotFoundException("Job","ID",jobId));
+        existingJob.setCompany(null);
+        jobRepository.deleteById(existingJob.getId());
+        System.out.println(jobId+"is deleted");
+        return null;
     }
 }

@@ -24,6 +24,10 @@ public class HR {
     private String lastName;
     @Column(name = "email",nullable = false,unique = true)
     private String email;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'hr'")
+    private String code="hr";
 
 //    @OneToOne
 //    @JoinColumn(name="company_id",nullable = false)

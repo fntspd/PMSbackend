@@ -1,6 +1,9 @@
 package com.fenton.rest_api.controllerlayer;
 
-import com.fenton.rest_api.Model.*;
+import com.fenton.rest_api.Model.Company;
+import com.fenton.rest_api.Model.HR;
+import com.fenton.rest_api.Model.Job;
+import com.fenton.rest_api.Model.StudentProfile;
 import com.fenton.rest_api.servicelayer.AdminService;
 import com.fenton.rest_api.servicelayer.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +33,6 @@ public class AdminController {
         return new ResponseEntity<StudentProfile>(adminService.addStudent(studentProfile),HttpStatus.CREATED);
     }
 
-    @PostMapping("/addStudentadmin")
-    public ResponseEntity<AddStudent> addStudentadmin(@RequestBody AddStudent addStudent) {
-        return new ResponseEntity<AddStudent>(adminService.addstudentadmin(addStudent),HttpStatus.CREATED);
-    }
 
     @PostMapping("/addCompany")
     public ResponseEntity<Company> addCompany(@RequestBody Company company) {
@@ -51,10 +50,5 @@ public class AdminController {
     @PutMapping("/updateJob/{jobId}")
     public ResponseEntity<Job> updateJob(@PathVariable Long jobId, @RequestBody Job job) {
         return new ResponseEntity<Job>(adminService.updateJob(jobId,job),HttpStatus.OK);
-    }
-
-    @PutMapping("/updateStudentadmin/{studentId}")
-    public ResponseEntity<AddStudent> updateStudentadmin(@PathVariable Long studentId, @RequestBody AddStudent addStudent) {
-        return new ResponseEntity<AddStudent>(adminService.updateStudentadmin(studentId,addStudent),HttpStatus.OK);
     }
 }

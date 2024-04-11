@@ -7,6 +7,8 @@ import java.util.List;
 public interface AdminService {
     Admin admin(Admin admin);
     List<StudentProfile> getAllStudent();
+    List<Company> getAllCompany();
+    List<Job> getAllJobs();
 
     StudentProfile addStudent(StudentProfile studentProfile);
     AddStudent addstudentadmin(AddStudent addStudent);
@@ -17,4 +19,5 @@ public interface AdminService {
     Job postJob(Long companyId,Job job);
     StudentProfile updateStudent(Long stdId, StudentProfile studentProfile);
     Job updateJob(Long jobId,Job job);
+    Long deleteJobById(Long jobId);
 }

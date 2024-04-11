@@ -33,7 +33,4 @@ public class Company {
     @OneToOne
     @JoinColumn(name = "hr_id")
     private HR hr;
-
-
-
 }
