@@ -5,6 +5,7 @@ import com.fenton.rest_api.Model.HR;
 import com.fenton.rest_api.Model.Job;
 import com.fenton.rest_api.Model.StudentProfile;
 import com.fenton.rest_api.servicelayer.AdminService;
+import com.fenton.rest_api.servicelayer.JobService;
 import com.fenton.rest_api.servicelayer.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,15 @@ public class AdminController {
     public List<StudentProfile> getAllStudent(){
         return adminService.getAllStudent();
     }
+
+    @GetMapping("/getAllCompany")
+    public List<Company> getAllCompany(){
+        return adminService.getAllCompany();
+    }
+    @GetMapping("/getAllJobs")
+    public List<Job> getAllJobs(){
+        return adminService.getAllJobs();
+    }
     @PostMapping("/addStudents")
     public ResponseEntity<StudentProfile> addStudents(@RequestBody StudentProfile studentProfile) {
         return new ResponseEntity<StudentProfile>(adminService.addStudent(studentProfile),HttpStatus.CREATED);
@@ -50,5 +60,9 @@ public class AdminController {
     @PutMapping("/updateJob/{jobId}")
     public ResponseEntity<Job> updateJob(@PathVariable Long jobId, @RequestBody Job job) {
         return new ResponseEntity<Job>(adminService.updateJob(jobId,job),HttpStatus.OK);
+    }
+    @DeleteMapping("/deleteJob/{jobId}")
+    public ResponseEntity<Long> deleteJobById(@PathVariable("jobId")Long jobId){
+        return new ResponseEntity<Long>(adminService.deleteJobById(jobId),HttpStatus.OK);
     }
 }

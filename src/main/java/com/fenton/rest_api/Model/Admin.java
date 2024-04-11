@@ -24,4 +24,8 @@ public class Admin {
     private String lastName;
     @Column(name = "email",unique = true,nullable = false)
     private String email;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'admin'")
+    private String code="admin";
 }
