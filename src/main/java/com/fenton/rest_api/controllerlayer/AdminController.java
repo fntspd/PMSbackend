@@ -33,7 +33,6 @@ public class AdminController {
         return new ResponseEntity<StudentProfile>(adminService.addStudent(studentProfile),HttpStatus.CREATED);
     }
 
-
     @PostMapping("/addCompany")
     public ResponseEntity<Company> addCompany(@RequestBody Company company) {
         return new ResponseEntity<Company>(adminService.addCompany(company),HttpStatus.CREATED);
