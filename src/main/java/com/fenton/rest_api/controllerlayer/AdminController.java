@@ -37,6 +37,11 @@ public class AdminController {
     public ResponseEntity<Company> addCompany(@RequestBody Company company) {
         return new ResponseEntity<Company>(adminService.addCompany(company),HttpStatus.CREATED);
     }
+
+    @GetMapping("/getAllCompany")
+    public List<Company> getAllCompany(){
+        return adminService.getAllCompany();
+    }
     @PostMapping("/postJob/{companyId}")
     public ResponseEntity<Job> postJob(@PathVariable Long companyId,@RequestBody Job job){
         return new ResponseEntity<Job>(adminService.postJob(companyId,job),HttpStatus.CREATED);
