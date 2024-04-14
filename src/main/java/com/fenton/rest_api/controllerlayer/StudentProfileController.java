@@ -1,5 +1,6 @@
 package com.fenton.rest_api.controllerlayer;
 
+import com.fenton.rest_api.Model.Job;
 import com.fenton.rest_api.Model.StudentProfile;
 import com.fenton.rest_api.servicelayer.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,26 @@ public class StudentProfileController {
     public ResponseEntity<Long> deleteStudent(@PathVariable("id")Long stdid){
         return new ResponseEntity<Long>(studentService.deleteById(stdid),HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/appliedJobs/{student_id}")
+    public ResponseEntity<List<Job>> getJobsByStudentId(@PathVariable("student_id") Long studentId) {
+        List<Job> jobs = studentService.getJobsByStudentId(studentId);
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
+    @GetMapping("/getJobById/{jobId}")
+    public ResponseEntity<Job> getJobById(@PathVariable("jobId")Long jobId){
+        return new ResponseEntity<Job>(studentService.getJobById(jobId),HttpStatus.OK);
+    }
+    //it'll give the the job which is opened for hiring
+    @GetMapping("/getAllOpenJobs")
+    public ResponseEntity<List<Job>> getAllOpenJobs(){
+        List<Job> jobs=studentService.getAllOpenJobs();
+        return new ResponseEntity<>(jobs,HttpStatus.OK);
+    }
+
+
+
+
 
 }

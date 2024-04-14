@@ -1,7 +1,9 @@
 package com.fenton.rest_api.servicelayer;
 
+import com.fenton.rest_api.Model.Job;
 import com.fenton.rest_api.Model.StudentProfile;
 import com.fenton.rest_api.ResourceNotFoundException;
+import com.fenton.rest_api.repository.JobRepository;
 import com.fenton.rest_api.repository.StudentProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,12 @@ import java.util.Optional;
 public class StudentProfileServiceImpl implements StudentService{
 
     private final StudentProfileRepository studentProfileRepository;
+    private final JobRepository jobRepository;
 
     @Autowired
-    public StudentProfileServiceImpl(StudentProfileRepository studentProfileRepository) {
+    public StudentProfileServiceImpl(StudentProfileRepository studentProfileRepository,JobRepository jobRepository) {
         this.studentProfileRepository = studentProfileRepository;
+        this.jobRepository=jobRepository;
     }
 
     @Override
@@ -58,4 +62,25 @@ public class StudentProfileServiceImpl implements StudentService{
         System.out.println(id+"is deleted");
         return null;
     }
+    @Override
+    public List<Job> getJobsByStudentId(Long studentId) {
+        StudentProfile student = studentProfileRepository.findById(studentId)
+                .orElseThrow(() -> new ResourceNotFoundException("StudentProfile", "ID", studentId));
+
+        return student.getJobs();
+    }
+    @Override
+    public Job getJobById(Long jobId){
+        Optional<Job> job = jobRepository.findById(jobId);
+        if (job.isPresent()){
+            return job.get();
+        }else{
+            throw new ResourceNotFoundException("Job","ID",jobId);
+        }
+    }
+    @Override
+    public List<Job>  getAllOpenJobs(){
+        return jobRepository.findByStatus("Open");
+    }
+
 }

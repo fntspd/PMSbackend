@@ -57,9 +57,9 @@ public class AdminController {
     public ResponseEntity<StudentProfile> updateStudent(@PathVariable Long stdId, @RequestBody StudentProfile studentProfile) {
         return new ResponseEntity<StudentProfile>(adminService.updateStudent(stdId,studentProfile),HttpStatus.OK);
     }
-    @PutMapping("/updateJob/{jobId}")
-    public ResponseEntity<Job> updateJob(@PathVariable Long jobId, @RequestBody Job job) {
-        return new ResponseEntity<Job>(adminService.updateJob(jobId,job),HttpStatus.OK);
+    @PutMapping("/updateJob/{jobId}/{companyId}")
+    public ResponseEntity<Job> updateJob(@PathVariable Long jobId, @PathVariable Long companyId,@RequestBody Job job) {
+        return new ResponseEntity<Job>(adminService.updateJob(jobId,companyId,job),HttpStatus.OK);
     }
     @DeleteMapping("/deleteJob/{jobId}")
     public ResponseEntity<Long> deleteJobById(@PathVariable("jobId")Long jobId){

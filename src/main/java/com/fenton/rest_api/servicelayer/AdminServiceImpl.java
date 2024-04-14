@@ -50,6 +50,7 @@ public class AdminServiceImpl implements AdminService{
         if (studentProfile.getFirstName() == null ||
                 studentProfile.getLastName() == null ||
                 studentProfile.getEmail() == null ||
+                studentProfile.getPassword()==null||
                 studentProfile.getCpi() == null ||
                 studentProfile.getMobileNumber() == null ||
                 studentProfile.getDob() == null ||
@@ -164,8 +165,9 @@ public class AdminServiceImpl implements AdminService{
         //return studentProfileRepository.save(studentProfile);
     }
     @Override
-    public Job updateJob(Long jobId,Job job){
+    public Job updateJob(Long jobId,Long companyId,Job job){
         Job existingJob=jobRepository.findById(jobId).orElseThrow(()->new ResourceNotFoundException("Job","ID",jobId));
+        Company company=companyRepository.findById(companyId).orElseThrow(()-> new ResourceNotFoundException("Company","ID",companyId));
         if (job.getTitle() != null) {
             existingJob.setTitle(job.getTitle());
         }
@@ -175,6 +177,13 @@ public class AdminServiceImpl implements AdminService{
         if (job.getDescription() != null) {
             existingJob.setDescription(job.getDescription());
         }
+        if (job.getStatus() != null) {
+            existingJob.setStatus(job.getStatus());
+        }
+        existingJob.setCompany(company);
+//        if(job.getCompany()!=null){
+//            existingJob.setCompany(company);
+//        }
         jobRepository.save(existingJob);
         return existingJob;
     }
