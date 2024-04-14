@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
-import java.util.Base64;
+
+import static javax.swing.Action.DEFAULT;
 
 
 @Data
@@ -32,20 +31,10 @@ public class StudentProfile {
 
     @Column(name = "email",nullable = false,unique = true)
     private String email;
-
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "school", nullable = false)
-    private String school;
-
-    @Column(name = "campus", nullable = false)
-    private String campus;
-
-    @Column(name = "branch",nullable = false)
-    private  String branch;
-
-    @Column(name = "dob", nullable = false)
+    @Column(name = "dob",nullable = false)
     private String dob;
 
     @Column(name = "gender",nullable = false)
@@ -69,33 +58,38 @@ public class StudentProfile {
     @Column(name = "mother_mobile")
     private Long motherMobile;
 
-    @Column(name = "permanent_address", nullable = false)
+    @Column(name = "permanent_address",nullable = false)
     private String permanentAddress;
 
-    @Column(name = "current_address", nullable = false)
+    @Column(name = "current_address",nullable = false)
     private String currentAddress;
 
-    @Column(name = "class10th", nullable = false)
+    @Column(name = "class10th",nullable = false)
     private String class10grade;
 
-    @Column(name = "class12th", nullable = false)
-    private String class12grade;
+    @Column(name = "class12th",nullable = false)
+        private String class12grade;
 
-    @Column(name = "curr_deg_grade", nullable = false)
+    @Column(name = "curr_deg_grade",nullable = false)
     private String currentdegreegrade;
 
-    @Column(name = "cpi", nullable = false)
+    @Column(name = "cpi",nullable = false)
     private String cpi;
 
-    @Column(name = "curr_back", nullable = false)
+    @Column(name = "curr_back",nullable = false)
     private Long currentBacklogs;
 
-    @Column(name = "tot_back", nullable = false)
+    @Column(name = "tot_back",nullable = false)
     private Long totalBacklogs;
 
     @Column(name="placement_status",columnDefinition = "VARCHAR(255) DEFAULT 'No'")
     private String placementStatus = "No";
-
     @Column(nullable = false, columnDefinition = "varchar(255) default 'student'")
     private String code="student";
+
+
+
+//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL , mappedBy = "studentProfile")
+
+
 }

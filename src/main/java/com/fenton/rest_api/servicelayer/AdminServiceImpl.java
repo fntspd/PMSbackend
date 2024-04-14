@@ -49,23 +49,19 @@ public class AdminServiceImpl implements AdminService{
     public StudentProfile addStudent(StudentProfile studentProfile){
         if (studentProfile.getFirstName() == null ||
                 studentProfile.getLastName() == null ||
-                studentProfile.getMiddleName()== null ||
                 studentProfile.getEmail() == null ||
-                studentProfile.getCampus() == null ||
-                studentProfile.getBranch() == null ||
-                studentProfile.getSchool() == null ||
+                studentProfile.getCpi() == null ||
+                studentProfile.getMobileNumber() == null ||
                 studentProfile.getDob() == null ||
                 studentProfile.getGender() == null ||
-                studentProfile.getMobileNumber() == null ||
-                studentProfile.getClass10grade() == null ||
-                studentProfile.getClass12grade() == null ||
                 studentProfile.getFatherName() == null ||
                 studentProfile.getMotherName() == null ||
                 studentProfile.getPermanentAddress() == null ||
                 studentProfile.getCurrentAddress() == null ||
-                studentProfile.getCurrentBacklogs() == null ||
+                studentProfile.getClass10grade() == null ||
+                studentProfile.getClass12grade() == null ||
                 studentProfile.getCurrentdegreegrade() == null ||
-                studentProfile.getCpi() == null ||
+                studentProfile.getCurrentBacklogs() == null ||
                 studentProfile.getTotalBacklogs() == null) {
             throw new FieldsNotEnteredException();
         }
@@ -84,7 +80,7 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public Job postJob(Long companyId,Job job){
-        //job will b posted only when there will be company associated with it or already registered with it
+        //job will b posted only when there will b company associated with it or already registered with it
         Company company=companyRepository.findById(companyId).orElseThrow(()-> new ResourceNotFoundException("Company","ID",companyId));
         if(job.getTitle()==null||
                 job.getRequirements()==null||
@@ -111,18 +107,6 @@ public class AdminServiceImpl implements AdminService{
         }
         if (studentProfile.getEmail() != null) {
             existingStudent.setEmail(studentProfile.getEmail());
-        }
-        if (studentProfile.getPassword() != null) {
-            existingStudent.setPassword(studentProfile.getPassword());
-        }
-        if (studentProfile.getSchool() != null) {
-            existingStudent.setSchool(studentProfile.getSchool());
-        }
-        if (studentProfile.getCampus() != null) {
-            existingStudent.setCampus(studentProfile.getCampus());
-        }
-        if (studentProfile.getBranch() != null) {
-            existingStudent.setBranch(studentProfile.getBranch());
         }
         if (studentProfile.getDob() != null) {
             existingStudent.setDob(studentProfile.getDob());
@@ -156,7 +140,6 @@ public class AdminServiceImpl implements AdminService{
         }
         if (studentProfile.getClass10grade() != null) {
             existingStudent.setClass10grade(studentProfile.getClass10grade());
-
         }if (studentProfile.getClass12grade() != null) {
             existingStudent.setClass12grade(studentProfile.getClass12grade());
         }

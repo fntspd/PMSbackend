@@ -16,6 +16,6 @@ public interface AdminService {
     Company addCompany(Company company);
     Job postJob(Long companyId,Job job);
     StudentProfile updateStudent(Long stdId, StudentProfile studentProfile);
-    Job updateJob(Long jobId,Job job);
+    Job updateJob(Long jobId,Long companyId,Job job);
     Long deleteJobById(Long jobId);
 }

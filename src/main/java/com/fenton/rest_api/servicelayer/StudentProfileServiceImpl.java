@@ -25,13 +25,37 @@ public class StudentProfileServiceImpl implements StudentService{
     }
 
     @Override
+    public List<StudentProfile> getAllStudentProfile() {
+        return studentProfileRepository.findAll();
+    }
+
+    @Override
+    public StudentProfile getStudentProfileById(Long stdid) {
+        Optional<StudentProfile> employee = studentProfileRepository.findById(stdid);
+        if (employee.isPresent()){
+            return employee.get();
+        }else{
+            throw new ResourceNotFoundException("StudentProfile","ID",stdid);
+        }
+    }
+
+    @Override
     public StudentProfile updateStudentProfile(Long id,StudentProfile std){
-        StudentProfile existingStudent=studentProfileRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Student","ID",id));
+        StudentProfile existingStudent=studentProfileRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Employee","ID",id));
         existingStudent.setFirstName(std.getFirstName());
         existingStudent.setLastName(std.getLastName());
         existingStudent.setEmail(std.getEmail());
         existingStudent.setDob(std.getDob());
         studentProfileRepository.save(existingStudent);
         return existingStudent;
+    }
+
+    @Override
+    public Long deleteById(Long id) {
+        StudentProfile existingStudent=studentProfileRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Employee","ID",id));
+
+        studentProfileRepository.deleteById(existingStudent.getId());
+        System.out.println(id+"is deleted");
+        return null;
     }
 }
