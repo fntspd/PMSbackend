@@ -34,6 +34,15 @@ public class StudentProfile {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "campus", nullable = false)
+    private  String campus;
+
+    @Column(name = "school", nullable = false)
+    private String school;
+
+    @Column(name = "branch",nullable = false)
+    private  String branch;
+
     @Column(name = "dob",nullable = false)
     private String dob;
 
