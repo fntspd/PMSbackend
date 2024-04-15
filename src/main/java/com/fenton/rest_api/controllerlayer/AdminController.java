@@ -38,6 +38,7 @@ public class AdminController {
     public List<Job> getAllJobs(){
         return adminService.getAllJobs();
     }
+    //can be repeated with hrcontroller so ,have to make it single controller
     @PostMapping("/addStudents")
     public ResponseEntity<StudentProfile> addStudents(@RequestBody StudentProfile studentProfile) {
         return new ResponseEntity<StudentProfile>(adminService.addStudent(studentProfile),HttpStatus.CREATED);
